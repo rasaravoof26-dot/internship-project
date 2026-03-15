@@ -29,7 +29,7 @@ function getRedisConnection() {
     // Railway provides REDIS_URL or REDISHOST/REDISPORT
     $host = getenv('REDISHOST') ?: 'centerbeam.proxy.rlwy.net';
     $port = getenv('REDISPORT') ?: 45582;
-    $pass = getenv('REDISPASSWORD');
+    $pass = getenv('REDISPASSWORD') ?: 'oUxoXdodIQIdTsKvhYidZLUgLlJEZnRH';
 
     $redis->connect($host, $port);
     if ($pass) {
@@ -40,7 +40,7 @@ function getRedisConnection() {
 
 function getMongoDBConnection() {
     // Railway provides MONGODB_URL
-    $uri = getenv('MONGODB_URL') ?: "mongodb://gondola.proxy.rlwy.net:50310";
+    $uri = getenv('MONGODB_URL') ?: "mongodb://root:YrvctZRnVzALIXZFrdnBAXdjzuoEYmkT@gondola.proxy.rlwy.net:50310";
     return new MongoDB\Driver\Manager($uri);
 }
 ?>
