@@ -1,0 +1,10 @@
+{
+    "name": "internship-project",
+    "description": "User Management System",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo_mysql": "*",
+        "ext-mongodb": "*",
+        "ext-redis": "*"
+    }
+}
