@@ -1,13 +1,21 @@
 <?php
 require_once 'db.php';
 
-// Simple token parser from header
-$headers = getallheaders();
-$authHeader = $headers['Authorization'] ?? '';
-$token = str_replace('Bearer ', '', $authHeader);
+// Better token retrieval for various server setups
+$authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+if (!$authHeader) {
+    $headers = getallheaders();
+    $authHeader = $headers['Authorization'] ?? $headers['authorization'] ?? '';
+}
+$token = preg_replace('/^Bearer\s+/i', '', $authHeader);
 
 if (!$token) {
-    echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
+    // Check if token is in cookie as fallback (if implemented later) or query
+    $token = $_GET['token'] ?? '';
+}
+
+if (!$token) {
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized: No token provided']);
     exit;
 }
 
