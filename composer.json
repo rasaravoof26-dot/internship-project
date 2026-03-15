@@ -1,5 +1,4 @@
 {
-    "name": "user/internship-project",
     "description": "User Management System",
     "require": {
         "php": ">=8.2",
