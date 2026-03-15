@@ -4,7 +4,7 @@
 function getMySQLConnection() {
     // Railway provides MYSQL_URL or individual variables
     $host = getenv('MYSQLHOST') ?: ($_ENV['MYSQLHOST'] ?? ($_SERVER['MYSQLHOST'] ?? 'caboose.proxy.rlwy.net'));
-    $db   = getenv('MYSQLDATABASE') ?: ($_ENV['MYSQLDATABASE'] ?? ($_SERVER['MYSQLDATABASE'] ?? 'internship_db'));
+    $db   = getenv('MYSQLDATABASE') ?: ($_ENV['MYSQLDATABASE'] ?? ($_SERVER['MYSQLDATABASE'] ?? 'railway'));
     $user = getenv('MYSQLUSER') ?: ($_ENV['MYSQLUSER'] ?? ($_SERVER['MYSQLUSER'] ?? 'root')); 
     $pass = getenv('MYSQLPASSWORD') ?: ($_ENV['MYSQLPASSWORD'] ?? ($_SERVER['MYSQLPASSWORD'] ?? 'OMAhZjCpuhcBGYxthbncNEUcIPrHZOJT')); 
     $port = getenv('MYSQLPORT') ?: ($_ENV['MYSQLPORT'] ?? ($_SERVER['MYSQLPORT'] ?? '20565'));
@@ -33,14 +33,20 @@ function getRedisConnection() {
 
     $redis->connect($host, $port);
     if ($pass) {
-        $redis->auth($pass);
+        // Try auth with user 'default' for Redis 6+ compatibility if needed, 
+        // but often just the password works for the default user.
+        try {
+            $redis->auth($pass);
+        } catch (Exception $e) {
+            $redis->auth(['default', $pass]);
+        }
     }
     return $redis;
 }
 
 function getMongoDBConnection() {
     // Railway provides MONGODB_URL
-    $uri = getenv('MONGODB_URL') ?: "mongodb://root:YrvctZRnVzALIXZFrdnBAXdjzuoEYmkT@gondola.proxy.rlwy.net:50310";
+    $uri = getenv('MONGODB_URL') ?: "mongodb://mongo:YrvctZRnVzALIXZFrdnBAXdjzuoEYmkT@gondola.proxy.rlwy.net:50310";
     return new MongoDB\Driver\Manager($uri);
 }
 ?>
