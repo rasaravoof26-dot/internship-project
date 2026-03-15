@@ -3,11 +3,11 @@
 
 function getMySQLConnection() {
     // Railway provides MYSQL_URL or individual variables
-    $host = getenv('MYSQLHOST') ?: '127.0.0.1';
-    $db   = getenv('MYSQLDATABASE') ?: 'internship_db';
-    $user = getenv('MYSQLUSER') ?: 'root'; 
-    $pass = getenv('MYSQLPASSWORD') ?: ''; 
-    $port = getenv('MYSQLPORT') ?: '3306';
+    $host = getenv('MYSQLHOST') ?: ($_ENV['MYSQLHOST'] ?? ($_SERVER['MYSQLHOST'] ?? '127.0.0.1'));
+    $db   = getenv('MYSQLDATABASE') ?: ($_ENV['MYSQLDATABASE'] ?? ($_SERVER['MYSQLDATABASE'] ?? 'internship_db'));
+    $user = getenv('MYSQLUSER') ?: ($_ENV['MYSQLUSER'] ?? ($_SERVER['MYSQLUSER'] ?? 'root')); 
+    $pass = getenv('MYSQLPASSWORD') ?: ($_ENV['MYSQLPASSWORD'] ?? ($_SERVER['MYSQLPASSWORD'] ?? '')); 
+    $port = getenv('MYSQLPORT') ?: ($_ENV['MYSQLPORT'] ?? ($_SERVER['MYSQLPORT'] ?? '3306'));
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
