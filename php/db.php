@@ -2,13 +2,15 @@
 // Common database and connection helper functions
 
 function getMySQLConnection() {
-    $host = '127.0.0.1';
-    $db   = 'internship_db';
-    $user = 'root'; 
-    $pass = ''; 
+    // Railway provides MYSQL_URL or individual variables
+    $host = getenv('MYSQLHOST') ?: '127.0.0.1';
+    $db   = getenv('MYSQLDATABASE') ?: 'internship_db';
+    $user = getenv('MYSQLUSER') ?: 'root'; 
+    $pass = getenv('MYSQLPASSWORD') ?: ''; 
+    $port = getenv('MYSQLPORT') ?: '3306';
     $charset = 'utf8mb4';
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
     $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -24,12 +26,22 @@ function getMySQLConnection() {
 
 function getRedisConnection() {
     $redis = new Redis();
-    $redis->connect('127.0.0.1', 6379);
+    // Railway provides REDIS_URL or REDISHOST/REDISPORT
+    $host = getenv('REDISHOST') ?: '127.0.0.1';
+    $port = getenv('REDISPORT') ?: 6379;
+    $pass = getenv('REDISPASSWORD');
+
+    $redis->connect($host, $port);
+    if ($pass) {
+        $redis->auth($pass);
+    }
     return $redis;
 }
 
 function getMongoDBConnection() {
-    // Returns the low-level driver manager
-    return new MongoDB\Driver\Manager("mongodb://localhost:27017");
+    // Railway provides MONGODB_URL
+    $uri = getenv('MONGODB_URL') ?: "mongodb://localhost:27017";
+    return new MongoDB\Driver\Manager($uri);
 }
 ?>
+
