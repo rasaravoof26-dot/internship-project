@@ -1,0 +1,7 @@
+/temp_ext/
+.DS_Store
+Thumbs.db
+*.log
+*.err
+*.tmp
+# Don't ignore db.php as it's the connection file, but we'll warn about creds in README

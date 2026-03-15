@@ -1,0 +1,22 @@
+# Task: Internship Signup/Login/Profile System
+
+- [ ] Project Setup <!-- id: 0 -->
+    - [ ] Create folder structure <!-- id: 1 -->
+    - [ ] Initialize database schemas (MySQL & MongoDB) <!-- id: 2 -->
+    - [ ] Setup Redis connection <!-- id: 3 -->
+- [ ] Frontend Development <!-- id: 4 -->
+    - [ ] Create `register.html` <!-- id: 5 -->
+    - [ ] Create `login.html` <!-- id: 6 -->
+    - [ ] Create `profile.html` <!-- id: 7 -->
+    - [ ] Implement `register.js` (AJAX) <!-- id: 8 -->
+    - [ ] Implement `login.js` (AJAX) <!-- id: 9 -->
+    - [ ] Implement `profile.js` (AJAX) <!-- id: 10 -->
+- [ ] Backend Development <!-- id: 11 -->
+    - [ ] Implement `register.php` (MySQL) <!-- id: 12 -->
+    - [ ] Implement `login.php` (MySQL + Redis) <!-- id: 13 -->
+    - [ ] Implement `profile.php` (MongoDB + Redis) <!-- id: 14 -->
+- [ ] Verification <!-- id: 15 -->
+    - [ ] Test Registration <!-- id: 16 -->
+    - [ ] Test Login <!-- id: 17 -->
+    - [ ] Test Profile Update <!-- id: 18 -->
+    - [ ] Verify session management with Redis and LocalStorage <!-- id: 19 -->
