@@ -1,5 +1,0 @@
-[phases.setup]
-nixPkgs = ["php", "php83", "php83Extensions.pdo_mysql", "php83Extensions.mongodb", "php83Extensions.redis"]
-
-[start]
-cmd = "php -S 0.0.0.0:$PORT"
