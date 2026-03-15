@@ -1,3 +1,1 @@
-<?php
-echo "PHP is working! Current port: " . getenv('PORT');
-?>
+<?php include_once("index.html"); ?>
