@@ -1,7 +1,0 @@
-{
-    "require": {
-        "ext-pdo_mysql": "*",
-        "ext-mongodb": "*",
-        "ext-redis": "*"
-    }
-}
