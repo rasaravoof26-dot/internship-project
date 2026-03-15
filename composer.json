@@ -1,7 +1,9 @@
 {
+    "name": "rasaravoof26/internship-project",
     "description": "User Management System",
     "require": {
         "php": ">=8.2",
+        "ext-mysqli": "*",
         "ext-pdo_mysql": "*",
         "ext-mongodb": "*",
         "ext-redis": "*"
