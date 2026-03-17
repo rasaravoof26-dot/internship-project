@@ -46,6 +46,11 @@ This project demonstrates the integration of multiple database technologies and 
 
 ## 🖥 Admin Dashboard
 Access the data overview at `http://localhost:8000/admin.html`.
+or using railway github deployment register -
+https://internship-project-production-8080.up.railway.app/register.html 
+login -
+https://internship-project-production-8080.up.railway.app/login.html
+
 
 ---
 *Created as part of an Internship Technical Task.*
